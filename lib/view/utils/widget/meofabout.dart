@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_declarations
 
 import 'package:cv/view/utils/Web_color.dart';
 import 'package:flutter/animation.dart';
@@ -69,43 +69,74 @@ class AboutME extends StatelessWidget {
   }
 }
 
-class ImageIDE extends StatelessWidget {
+class ImageIDE extends StatefulWidget {
   final List<String> indexs;
   final String aboutname;
   final int itemCount;
 
   const ImageIDE({
-    super.key,
+    Key? key,
     required this.aboutname,
     required this.itemCount,
     required this.indexs,
-  });
+  }) : super(key: key);
+
+  @override
+  State<ImageIDE> createState() => _ImageIDEState();
+}
+
+class _ImageIDEState extends State<ImageIDE> {
+  final List<bool> _isHoveredList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _isHoveredList.addAll(List<bool>.filled(widget.itemCount, false));
+  }
+
+  void onEnter(int index, bool isHovered) {
+    setState(() {
+      _isHoveredList[index] = isHovered;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    final hoverScale = 1.5;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          aboutname,
+          widget.aboutname,
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: Get.height / 50),
+        SizedBox(height: MediaQuery.of(context).size.height / 50),
         SizedBox(
-          height: Get.height / 5,
-          width: Get.width / 3,
+          height: MediaQuery.of(context).size.height / 5,
+          width: MediaQuery.of(context).size.width / 3,
           child: ListView.builder(
-            itemCount: itemCount,
+            itemCount: widget.itemCount,
             scrollDirection: Axis.horizontal,
             physics: NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              return Image.asset(
-                indexs[index],
-                height: 80,
-                width: 80,
+              final hoverTransform = _isHoveredList[index]
+                  ? Matrix4.identity().scaled(hoverScale)
+                  : Matrix4.identity();
+              return MouseRegion(
+                onEnter: (event) => onEnter(index, true),
+                onExit: (event) => onEnter(index, false),
+                child: AnimatedContainer(
+                  transform: hoverTransform,
+                  duration: Duration(milliseconds: 180),
+                  child: Image.asset(
+                    widget.indexs[index],
+                    height: 80,
+                    width: 80,
+                  ),
+                ),
               );
             },
           ),
