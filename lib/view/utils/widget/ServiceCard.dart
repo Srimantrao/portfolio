@@ -1,7 +1,9 @@
-// ignore_for_file: use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_constructors_in_immutables, prefer_const_constructors, file_names
+// ignore_for_file: use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_constructors_in_immutables, prefer_const_constructors, file_names, non_constant_identifier_names, must_be_immutable
 
+import 'package:cv/controller/ChangingState.dart';
 import 'package:cv/view/utils/Web_color.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,7 +14,7 @@ class ServiceCard extends StatefulWidget {
   ServiceCard({required this.title, required this.icon});
 
   @override
-  _ServiceCardState createState() => _ServiceCardState();
+  State<ServiceCard> createState() => _ServiceCardState();
 }
 
 class _ServiceCardState extends State<ServiceCard> {
@@ -68,7 +70,7 @@ class _ServiceCardState extends State<ServiceCard> {
               textAlign: TextAlign.center,
               style: TextStyle(
                 fontFamily: GoogleFonts.readexPro().fontFamily,
-                fontSize: Get.width/90
+                fontSize: Get.width / 90,
               ),
             ),
           ],

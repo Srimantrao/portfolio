@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_declarations
+// ignore_for_file: prefer_const_constructors, prefer_const_declarations, use_super_parameters
 
 import 'package:cv/view/utils/Web_color.dart';
 import 'package:flutter/animation.dart';
@@ -90,19 +90,15 @@ class _ImageIDEState extends State<ImageIDE> {
 
   @override
   void initState() {
-    super.initState();
     _isHoveredList.addAll(List<bool>.filled(widget.itemCount, false));
+    super.initState();
   }
 
-  void onEnter(int index, bool isHovered) {
-    setState(() {
-      _isHoveredList[index] = isHovered;
-    });
-  }
+  void onEnter(int index, bool isHovered) => _isHoveredList[index] = isHovered;
 
   @override
   Widget build(BuildContext context) {
-    final hoverScale = 1.5;
+    final hoverScale = 1.3;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -115,8 +111,8 @@ class _ImageIDEState extends State<ImageIDE> {
         ),
         SizedBox(height: MediaQuery.of(context).size.height / 50),
         SizedBox(
-          height: MediaQuery.of(context).size.height / 5,
-          width: MediaQuery.of(context).size.width / 3,
+          height: Get.height / 5,
+          width: Get.width / 3,
           child: ListView.builder(
             itemCount: widget.itemCount,
             scrollDirection: Axis.horizontal,
@@ -143,5 +139,11 @@ class _ImageIDEState extends State<ImageIDE> {
         ),
       ],
     );
+  }
+
+  @override
+  void dispose() {
+    _isHoveredList.addAll(List<bool>.filled(widget.itemCount, false));
+    super.dispose();
   }
 }

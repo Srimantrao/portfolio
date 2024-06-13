@@ -1,6 +1,8 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, file_names
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, file_names, non_constant_identifier_names
 
 import 'package:cv/controller/Animation.dart';
+import 'package:cv/controller/ChangingState.dart';
+import 'package:cv/modal/whaticando.dart';
 import 'package:cv/view/utils/Web_color.dart';
 import 'package:cv/view/utils/Web_images.dart';
 import 'package:cv/view/utils/widget/ServiceCard.dart';
@@ -17,104 +19,96 @@ class WhatICanDoSection extends StatefulWidget {
 class _WhatICanDoSectionState extends State<WhatICanDoSection>
     with SingleTickerProviderStateMixin {
   Animations animi = Get.put(Animations());
+  Changingstate Hovers = Get.put(Changingstate());
 
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<Animations>(builder: (_) {
-      return Stack(
-        key: servicesKey,
-        children: [
-          Positioned(
-            right: 0,
-            left: 1150,
-            top: 0,
-            child: Opacity(
-              opacity: animi.Opacitying2.value,
-              child: Image.asset(
-                WebRocking.Rock_2,
-              ),
-            ),
-          ),
-          Positioned(
-            right: 1170,
-            left: 50,
-            top: 350,
-            child: Opacity(
-              opacity: animi.Opacitying.value,
-              child: Image.asset(
-                WebRocking.Rock_2,
-              ),
-            ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: Get.width / 40,
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Divider(
-                        thickness: 5,
-                        color: WebColor.liteblue,
-                      ),
-                    ),
-                    SizedBox(width: Get.width / 40),
-                    Text(
-                      'What I Can do ??',
-                      style:
-                          TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(width: Get.width / 40),
-                    Expanded(
-                      child: Divider(
-                        thickness: 5,
-                        color: WebColor.liteblue,
-                      ),
-                    ),
-                  ],
+    return GetBuilder<Animations>(
+      builder: (_) {
+        return Stack(
+          key: servicesKey,
+          children: [
+            Positioned(
+              right: 0,
+              left: 1150,
+              top: 0,
+              child: Opacity(
+                opacity: animi.Opacitying2.value,
+                child: Image.asset(
+                  WebRocking.Rock_2,
                 ),
               ),
-              SizedBox(height: Get.height / 20),
-              Center(
-                child: SizedBox(
-                  width: Get.width / 1.5,
-                  height: Get.height / 1,
-                  child: GridView(
-                    shrinkWrap: true,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 50,
-                      mainAxisSpacing: 50,
-                      mainAxisExtent: 250,
-                    ),
+            ),
+            Positioned(
+              right: 1170,
+              left: 50,
+              top: 350,
+              child: Opacity(
+                opacity: animi.Opacitying.value,
+                child: Image.asset(
+                  WebRocking.Rock_2,
+                ),
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: Get.width / 40,
+                  ),
+                  child: Row(
                     children: [
-                      ServiceCard(
-                        title: 'High-Performance Engineering',
-                        icon: WebIcons.leptop,
+                      Expanded(
+                        child: Divider(
+                          thickness: 5,
+                          color: WebColor.liteblue,
+                        ),
                       ),
-                      ServiceCard(
-                        title: 'Business Strategy (Trainee)',
-                        icon: WebIcons.Business,
+                      SizedBox(width: Get.width / 40),
+                      Text(
+                        'What I Can do ??',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
                       ),
-                      ServiceCard(
-                        title: 'UI Design Excellence',
-                        icon: WebIcons.ui,
-                      ),
-                      ServiceCard(
-                        title: 'Real-Time Solutions',
-                        icon: WebIcons.time2,
+                      SizedBox(width: Get.width / 40),
+                      Expanded(
+                        child: Divider(
+                          thickness: 5,
+                          color: WebColor.liteblue,
+                        ),
                       ),
                     ],
                   ),
                 ),
-              ),
-            ],
-          ),
-        ],
-      );
-    });
+                SizedBox(height: Get.height / 20),
+                Center(
+                  child: SizedBox(
+                    width: Get.width / 1.5,
+                    height: Get.height / 1,
+                    child: GridView.builder(
+                      itemCount: whatcando.length,
+                      shrinkWrap: true,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 50,
+                        mainAxisSpacing: 50,
+                        mainAxisExtent: 250,
+                      ),
+                      itemBuilder: (BuildContext context, int index) {
+                        return ServiceCard(
+                          title: whatcando[index]['work'],
+                          icon: whatcando[index]['icon'],
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+    );
   }
 }

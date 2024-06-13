@@ -8,7 +8,7 @@ class Heder_String {
   static const About = 'About';
   static const Services = 'Services';
   static const Projects = 'Projects';
-  static const Recommendation = 'Recommendation';
+  static const Recommendation = 'Project';
   static const Resume = 'Resume';
 }
 
@@ -35,4 +35,11 @@ class Skills_HireExpert {
   static const Info_app = "This is Application search for Drem Job !!";
   static const describe =
       "HireExpert is a cutting-edge job-finding application designed to connect job seekers with their ideal employment opportunities quickly and efficiently. By leveraging advanced algorithms and personalized recommendations, HireExpert matches users with job listings that align with their skills, experience, and career aspirations. The app features a user-friendly interface, real-time job alerts, and tools for resume building and interview preparation. Additionally, HireExpert offers resources for skill development and career advice, making it a comprehensive solution for anyone looking to advance their professional journey.";
+}
+
+class Servies {
+  static const Enineering = 'High-Performance Engineering';
+  static const business = 'Business Strategy (Trainee)';
+  static const excellence = 'UI Design Excellence';
+  static const solution = 'Real-Time Solutions';
 }
