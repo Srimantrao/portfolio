@@ -12,7 +12,7 @@ void scrollToSection(GlobalKey key) {
   final context = key.currentContext!;
   Scrollable.ensureVisible(
     context,
-    duration: Duration(seconds: 1),
+    duration: Duration(milliseconds: 800),
     curve: Curves.easeInOut,
   );
 }

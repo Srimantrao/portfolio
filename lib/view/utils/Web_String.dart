@@ -33,6 +33,7 @@ class Skills_HireExpert {
 
   //InforMAtion HierExpert
   static const Info_app = "This is Application search for Drem Job !!";
+  static const Vison = "HIrexpert envisions a transformative future for job-finding applications by integrating cutting-edge technologies and innovative features. The goal is to create a seamless, efficient, and user-centric experience for both job seekers and employers.";
   static const describe =
       "HireExpert is a cutting-edge job-finding application designed to connect job seekers with their ideal employment opportunities quickly and efficiently. By leveraging advanced algorithms and personalized recommendations, HireExpert matches users with job listings that align with their skills, experience, and career aspirations. The app features a user-friendly interface, real-time job alerts, and tools for resume building and interview preparation. Additionally, HireExpert offers resources for skill development and career advice, making it a comprehensive solution for anyone looking to advance their professional journey.";
 }
